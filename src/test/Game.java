@@ -1,16 +1,23 @@
 package test;
 public class Game {
     public static void main(String[] args) {
-        int turn = 0;
+        int turn = 0; //if turn is even then attacker will throw the die or else defender will throw the die.
         Dice d = new Dice();
-        Player A = new Player(150, 15, 10);
-        Player B = new Player(150,15,10);
-        System.out.println();
+
+        Player A = new Player(150, 15, 10); //object creation of player a.
+        Player B = new Player(150,15,10); //object creation of player b
+
+        if(A.getAttack() <= 0 || A.getHealth() <= 0 || A.getStrength() <= 0 || 
+            B.getAttack() <= 0 || B.getHealth() <= 0 || B.getStrength() <= 0) {
+                System.out.println("Players attributes should be greater than zero");
+                return;
+        }
+
+        System.out.println(); 
         System.out.println("----------------   Match Started   ----------------");
         System.out.println();
         System.out.println("Players initial status : ");
-        System.out.println("Player A : " + status(A));
-        System.out.println("Player B : " + status(B));
+        status(A, B); //status method will return each player attributes
         System.out.println();
         if(A.getHealth()<B.getHealth()) { //A will start the match
             System.out.println("A will start the match..!!");
@@ -30,8 +37,7 @@ public class Game {
                     int netDamage = attackingDamage - defendingStrength;
                     if(netDamage>0) B.setHealth(B.getHealth()-netDamage);
                     System.out.println("Players status : ");
-                    System.out.println("A Player : " + status(A));
-                    System.out.println("Player B : " + status(B));
+                    status(A, B);
                     System.out.println();
                     System.out.println("------------------------------------------------");
                 } else {
@@ -48,8 +54,7 @@ public class Game {
                     int netDamage = attackingDamage - defendingStrength;
                     if(netDamage>0) A.setHealth(A.getHealth()-netDamage);
                     System.out.println("Players status : ");
-                    System.out.println("A Player : " + status(A));
-                    System.out.println("Player B : " + status(B));
+                    status(A, B);
                     System.out.println();
                     System.out.println("------------------------------------------------");
                 }
@@ -74,8 +79,7 @@ public class Game {
                     int netDamage = attackingDamage - defendingStrength;
                     if(netDamage>0) A.setHealth(A.getHealth()-netDamage);
                     System.out.println("Players status : ");
-                    System.out.println("A Player : " + status(A));
-                    System.out.println("Player B : " + status(B));
+                    status(A, B);
                     System.out.println();
                     System.out.println("------------------------------------------------");
                 } else {
@@ -92,8 +96,7 @@ public class Game {
                     int netDamage = attackingDamage - defendingStrength;
                     if(netDamage>0) B.setHealth(B.getHealth()-netDamage);
                     System.out.println("Players status : ");
-                    System.out.println("A Player : " + status(A));
-                    System.out.println("Player B : " + status(B));
+                    status(A, B);
                     System.out.println();
                     System.out.println("------------------------------------------------");
                 }
@@ -109,7 +112,8 @@ public class Game {
         System.out.println("Player B : " + status(B));*/
 
     }
-    public static String status(Player P) {
-        return("Health : " + P.getHealth()+", Strength : " + P.getStrength()+", Attack : " + P.getAttack());
+    public static void status(Player P1, Player P2) {
+        System.out.println("Player A : " + "Health : " + P1.getHealth()+", Strength : " + P1.getStrength()+", Attack : " + P1.getAttack());
+        System.out.println("Player B : " + "Health : " + P2.getHealth()+", Strength : " + P2.getStrength()+", Attack : " + P2.getAttack());
     }
 }
